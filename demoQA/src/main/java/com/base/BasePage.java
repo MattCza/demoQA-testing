@@ -19,9 +19,17 @@ public class BasePage {
         find(locator).click();
     }
 
-    protected void setText(By locator, String text){
+    protected void setText(By locator, String text) {
         find(locator).clear();
         find(locator).sendKeys(text);
+    }
+
+    public static void delay(int milliseconds) {
+        try {
+            Thread.sleep(milliseconds);
+        } catch (InterruptedException exc) {
+            exc.printStackTrace();
+        }
     }
 
 }
