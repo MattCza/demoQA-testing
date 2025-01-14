@@ -56,17 +56,29 @@ Here's an overview of the project's structure:
 demoQA-testing/
 ├── src/  
 │   ├── main/  
-│   │   └── java/  
+│   │   └── java/
+│   │       └── com.demoqa.base/  
 │   │       └── com.demoqa.pages/  
+│   │       └── com.demoqa.utility/  
 │   └── test/  
 │       └── java/  
+│           └── com.demoqa.base/
 │           └── com.demoqa.tests/  
 ├── pom.xml  
 └── README.md  
 ```
 
-src/main/java/com.demoqa.pages/: Contains Page Object Model (POM) classes for different pages of the demoQA website.  
+src/main/java/com.demoqa.base/:  
+define common methods and properties used across the project.  
+
+src/main/java/com.demoqa.utility/:  
+Includes helper classes and utilities.  
+
+src/main/java/com.demoqa.pages/:  
+Contains Page Object Model (POM) classes for different pages of the demoQA website.  
   
-src/test/java/com.demoqa.tests/: Contains the test classes.  
+src/test/java/com.demoqa.tests/:  
+Contains actual test classes that define test cases for various functionalities of the demoQA website.  
   
-pom.xml: Maven configuration file listing dependencies and build settings.  
+pom.xml:  
+Maven configuration file listing dependencies and build settings.  
