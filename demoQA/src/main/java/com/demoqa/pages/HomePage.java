@@ -1,15 +1,15 @@
-package com.demoqa;
+package com.demoqa.pages;
 
-import com.base.BasePage;
-import com.demoqa.alerts_frame_windows.AlertsFrameWindowsPage;
-import com.demoqa.book_store_application.BookStoreApplicationPage;
-import com.demoqa.elements.ElementsPage;
-import com.demoqa.forms.FormsPage;
-import com.demoqa.interactions.InteractionsPage;
-import com.demoqa.widgets.WidgetsPage;
+import com.demoqa.base.BasePage;
+import com.demoqa.pages.alerts_frame_windows.AlertsFrameWindowsPage;
+import com.demoqa.pages.book_store_application.BookStoreApplicationPage;
+import com.demoqa.pages.elements.ElementsPage;
+import com.demoqa.pages.forms.FormsPage;
+import com.demoqa.pages.interactions.InteractionsPage;
+import com.demoqa.pages.widgets.WidgetsPage;
 import org.openqa.selenium.By;
 
-import static com.utilities.JavaScriptUtility.*;
+import static com.demoqa.utilities.JavaScriptUtility.scrollToElementJavaScript;
 
 public class HomePage extends BasePage {
 

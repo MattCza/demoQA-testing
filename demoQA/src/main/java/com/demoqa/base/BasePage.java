@@ -1,4 +1,4 @@
-package com.base;
+package com.demoqa.base;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

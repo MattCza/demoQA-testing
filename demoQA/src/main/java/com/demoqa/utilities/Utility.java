@@ -1,6 +1,6 @@
-package com.utilities;
+package com.demoqa.utilities;
 
-import com.base.BasePage;
+import com.demoqa.base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 

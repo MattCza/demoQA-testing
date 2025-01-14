@@ -1,9 +1,9 @@
-package com.demoqa.elements;
+package com.demoqa.pages.elements;
 
-import com.demoqa.HomePage;
+import com.demoqa.pages.HomePage;
 import org.openqa.selenium.By;
 
-import static com.utilities.JavaScriptUtility.scrollToElementJavaScript;
+import static com.demoqa.utilities.JavaScriptUtility.scrollToElementJavaScript;
 
 public class ElementsPage extends HomePage {
 

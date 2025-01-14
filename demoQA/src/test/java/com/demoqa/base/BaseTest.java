@@ -1,13 +1,12 @@
 package com.demoqa.base;
 
-import com.base.BasePage;
-import com.demoqa.HomePage;
+import com.demoqa.pages.HomePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.*;
 
-import static com.base.BasePage.delay;
-import static com.utilities.Utility.setUtilityDriver;
+import static com.demoqa.base.BasePage.delay;
+import static com.demoqa.utilities.Utility.setUtilityDriver;
 
 public class BaseTest {
     protected String DEMOQA_URL = "https://demoqa.com/";

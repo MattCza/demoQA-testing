@@ -1,6 +1,7 @@
-package com.demoqa.elements;
+package com.demoqa.tests.elements;
 
 import com.demoqa.base.BaseTest;
+import com.demoqa.pages.elements.TextBoxPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

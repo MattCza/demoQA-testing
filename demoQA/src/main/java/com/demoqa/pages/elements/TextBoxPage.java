@@ -1,9 +1,9 @@
-package com.demoqa.elements;
+package com.demoqa.pages.elements;
 
 import org.openqa.selenium.By;
 
-import static com.utilities.JavaScriptUtility.scrollToElementJavaScript;
-import static com.utilities.Utility.*;
+import static com.demoqa.utilities.JavaScriptUtility.scrollToElementJavaScript;
+import static com.demoqa.utilities.Utility.getText;
 
 public class TextBoxPage extends ElementsPage {
     private By fullNameField = By.id("userName");
