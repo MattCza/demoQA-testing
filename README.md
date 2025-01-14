@@ -8,6 +8,10 @@ IN PROGRESS
 2. [Features](#features)
 3. [Technologies and Tools Used](#technologies-and-tools-used)
 4. [Project Structure](#project-structure)
+5. [Test Cases](#test-cases)
+   - [TextBox Test](#textbox-test)
+   - [CheckBox Test](#checkbox-test)
+   - 
 
 
 
@@ -56,17 +60,64 @@ Here's an overview of the project's structure:
 demoQA-testing/
 ├── src/  
 │   ├── main/  
-│   │   └── java/  
+│   │   └── java/
+│   │       └── com.demoqa.base/  
 │   │       └── com.demoqa.pages/  
+│   │       └── com.demoqa.utility/  
 │   └── test/  
 │       └── java/  
+│           └── com.demoqa.base/
 │           └── com.demoqa.tests/  
 ├── pom.xml  
 └── README.md  
 ```
 
-src/main/java/com.demoqa.pages/: Contains Page Object Model (POM) classes for different pages of the demoQA website.  
+src/main/java/com.demoqa.base/:  
+define common methods and properties used across the project.  
+
+src/main/java/com.demoqa.utility/:  
+Includes helper classes and utilities.  
+
+src/main/java/com.demoqa.pages/:  
+Contains Page Object Model (POM) classes for different pages of the demoQA website.  
   
-src/test/java/com.demoqa.tests/: Contains the test classes.  
+src/test/java/com.demoqa.tests/:  
+Contains actual test classes that define test cases for various functionalities of the demoQA website.  
   
-pom.xml: Maven configuration file listing dependencies and build settings.  
+pom.xml:  
+Maven configuration file listing dependencies and build settings.  
+
+
+
+## Test Cases
+
+This section highlights the automated test cases implemented for the demoQA website.  
+Each test case is designed to verify specific functionalities of the web application, ensuring reliability and correctness.
+
+### 1. TextBox Test
+**Objective:**  
+Verify that the TextBox component on the demoQA website accurately displays the user input after form submission.
+
+**Steps Covered:**
+- Navigate to the Elements section
+- Select the TextBox option
+- Fill in the following fields:
+  - Full Name
+  - Email
+  - Current Address
+  - Permanent Address
+- Submit the form
+- Validate that the displayed output matches the input provided
+
+**Assertions:**
+- The full name displayed matches the entered full name.
+- The email displayed matches the entered email.
+- The current address displayed matches the entered current address.
+- The permanent address displayed matches the entered permanent address.
+
+**Test Result:**  
+✔️ **Pass** – The TextBox component correctly handled and displayed user input.
+
+### 2. CheckBox Test
+TO DO
+
