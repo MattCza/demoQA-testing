@@ -23,6 +23,17 @@ public class ElementsPage extends HomePage {
         return new TextBoxPage();
     }
 
+    public CheckBoxPage clickCheckBoxItem() {
+        scrollToElementJavaScript(checkBoxItem);
+        click(checkBoxItem);
+        return new CheckBoxPage();
+    }
+
+    public WebTablesPage clickWebTablesItem() {
+        scrollToElementJavaScript(webTablesItem);
+        click(webTablesItem);
+        return new WebTablesPage();
+    }
 
 
 }
