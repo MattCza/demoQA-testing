@@ -35,5 +35,11 @@ public class ElementsPage extends HomePage {
         return new WebTablesPage();
     }
 
+    public ButtonsPage clickButtonsItem() {
+        scrollToElementJavaScript(buttonsItem);
+        click(buttonsItem);
+        return new ButtonsPage();
+    }
+
 
 }
