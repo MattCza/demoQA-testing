@@ -11,7 +11,7 @@ IN PROGRESS
 5. [Test Cases](#test-cases)
    - [TextBox Test](#textbox-test)
    - [CheckBox Test](#checkbox-test)
-   - 
+   - [RadioButton Test](#radiobutton-test)
 
 
 
@@ -116,8 +116,36 @@ Verify that the TextBox component on the demoQA website accurately displays the 
 - The permanent address displayed matches the entered permanent address.
 
 **Test Result:**  
-✔️ **Pass** – The TextBox component correctly handled and displayed user input.
+✔️ **Pass** – The TextBox component correctly handled and displayed user input.  
 
+---  
+  
 ### 2. CheckBox Test
-TO DO
+**Objective:**  
+Verify that the Checkbox component on the demoQA website allows users to select multiple items and accurately reflects the selections.  
+  
+  
+**Steps Covered:**  
+- Navigate to the Elements section.  
+- Select the CheckBox option.  
+- Expand all checkbox items.  
+- Select the following items:  
+  - Public  
+  - Excel File  
+- Validate the selection state of the checkboxes.  
 
+  
+**Assertions:**  
+- The "Excel File" checkbox is selected.  
+- The "Word File" checkbox is not selected.  
+
+  
+Test Result:  
+✔️ Pass – The Checkbox component correctly handled the selection and displayed the selected items as expected.  
+Console should display the list of selected items:  
+```Selected items: [public, excelFile]" ```  
+
+---  
+
+### 3. RadioButton Test  
+TO DO
