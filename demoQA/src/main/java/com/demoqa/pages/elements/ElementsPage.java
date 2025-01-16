@@ -47,5 +47,11 @@ public class ElementsPage extends HomePage {
         return new LinksPage();
     }
 
+    public DynamicPropertiesPage clickDynamicPropertiesItem() {
+        scrollToElementJavaScript(dynamicPropertiesItem);
+        click(dynamicPropertiesItem);
+        return new DynamicPropertiesPage();
+    }
+
 
 }
