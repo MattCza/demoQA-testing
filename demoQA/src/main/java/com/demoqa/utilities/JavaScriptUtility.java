@@ -12,4 +12,10 @@ public class JavaScriptUtility extends Utility {
         ((JavascriptExecutor) webDriver).executeScript(script, webElement);
     }
 
+    public static void clickJavaScript(By locator) {
+        WebElement element = webDriver.findElement(locator);
+        JavascriptExecutor executor = (JavascriptExecutor) webDriver;
+        executor.executeScript("arguments[0].click();", element);
+    }
+
 }
