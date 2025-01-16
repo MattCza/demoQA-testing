@@ -41,5 +41,11 @@ public class ElementsPage extends HomePage {
         return new ButtonsPage();
     }
 
+    public LinksPage clickLinksItem() {
+        scrollToElementJavaScript(linksItem);
+        click(linksItem);
+        return new LinksPage();
+    }
+
 
 }
