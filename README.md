@@ -12,6 +12,7 @@ IN PROGRESS
    - [TextBox Test](#textbox-test)
    - [CheckBox Test](#checkbox-test)
    - [RadioButton Test](#radiobutton-test)
+   - [WebTables Test](#webtables-test)
 
 
 
@@ -140,12 +141,41 @@ Verify that the Checkbox component on the demoQA website allows users to select 
 - The "Word File" checkbox is not selected.  
 
   
-Test Result:  
+**Test Result:**  
 ✔️ Pass – The Checkbox component correctly handled the selection and displayed the selected items as expected.  
 Console should display the list of selected items:  
 ```Selected items: [public, excelFile]" ```  
 
 ---  
 
-### 3. RadioButton Test  
-TO DO
+### 3. WebTables Test
+  
+**Objective:**  
+Verify the functionality of adding, editing, and deleting records in the WebTables section of the demoQA application.
+
+  
+**Steps Covered:**  
+- Navigate to the Elements section.
+- Click on the Web Tables option.
+- Add a new employee record with the following details:
+  - Name: Matt Smith
+  - Email: ms@gmail.com
+  - Age: 27
+  - Salary: 10000
+  - Department: Technology
+- Verify that the new employee record appears in the table.
+- Delete the added record.
+- Edit the salary of an existing employee (Kierra).
+- Submit the changes and validate the updated salary.
+
+  
+**Assertions:**  
+- The newly added record is present in the table.
+- The edited employee’s salary is updated correctly in the table.
+
+**Test Result:**  
+✔️ Pass – The Web Tables functionality correctly handles adding, editing, and deleting employee records.
+  
+---  
+
+### 4. TO DO
