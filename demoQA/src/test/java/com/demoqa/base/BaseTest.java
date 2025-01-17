@@ -31,11 +31,11 @@ public class BaseTest {
         homePage = new HomePage();
     }
 
-    @AfterClass
-    public void tearDown() {
-        delay(3000);
-        driver.quit();
-    }
+//    @AfterClass
+//    public void tearDown() {
+//        delay(3000);
+//        driver.quit();
+//    }
 
 
 }

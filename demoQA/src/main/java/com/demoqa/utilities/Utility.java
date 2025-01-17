@@ -4,12 +4,17 @@ import com.demoqa.base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
 import java.time.Duration;
+import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
 
 public class Utility {
 
@@ -34,6 +39,30 @@ public class Utility {
                 .pollingEvery(Duration.ofMillis(500))
                 .ignoring(NoSuchElementException.class, StaleElementReferenceException.class);
         fluentWait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+    }
+
+
+    private static Select findDropDown(By locator) {
+        return new Select(webDriver.findElement(locator));
+    }
+
+    public static void selectByVisibleText(By locator, String text) {
+        findDropDown(locator).selectByVisibleText(text);
+    }
+
+    public static void selectByIndex(By locator, int index) {
+        findDropDown(locator).selectByIndex(index);
+    }
+
+    public static void selectByValue(By locator, String value) {
+        findDropDown(locator).selectByValue(value);
+    }
+
+    public static List<String> getAllSelectedOptions(By locator) {
+        List<WebElement> allSelectedOptions =
+                findDropDown(locator).getAllSelectedOptions();
+        return allSelectedOptions.stream().
+                map(WebElement::getText).collect(Collectors.toList());
     }
 
 
