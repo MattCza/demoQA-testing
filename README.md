@@ -96,7 +96,7 @@ Maven configuration file listing dependencies and build settings.
 ## Test Cases
 
 This section highlights the automated test cases implemented for the demoQA website.  
-Each test case is designed to verify specific functionalities of the web application, ensuring reliability and correctness.
+Each test case is designed to verify specific functionalities of the web application, ensuring reliability and correctness.  
 
 ### 1. TextBox Test  
   
@@ -173,7 +173,7 @@ Verify the behavior of a dynamic element on the Dynamic Properties Page, specifi
 
 **Test Result:**  
 The test confirms the successful behavior of the dynamic element, verifying that:  
-✔️ Pass – The button becomes visible after the expected delay.
+✔️ Pass – The button becomes visible after the expected delay.  
 ✔️ Pass – The button text matches the expected value.  
   
 ---  
@@ -200,11 +200,11 @@ Verify the functionality of adding, editing, and deleting records in the WebTabl
 
   
 **Assertions:**  
-- The newly added record is present in the table.
-- The edited employee’s salary is updated correctly in the table.
+- The newly added record is present in the table.  
+- The edited employee’s salary is updated correctly in the table.  
 
 **Test Result:**  
-✔️ Pass – The Web Tables functionality correctly handles adding, editing, and deleting employee records.
+✔️ Pass – The Web Tables functionality correctly handles adding, editing, and deleting employee records.  
   
 ---  
   
@@ -230,7 +230,7 @@ Verify that the Buttons component on the demoQA website responds correctly to di
 - Verify that the "Right Click Me" button is properly clicked and recognized.
 
 **Test Result:**  
-✔️ Pass – All button interactions were handled correctly, and the expected actions were verified.
+✔️ Pass – All button interactions were handled correctly, and the expected actions were verified.  
   
 ---  
   
@@ -292,4 +292,4 @@ Validate that the Practice Form on the demoQA website is correctly filled out an
 
   
 **Test Result:**  
-✔️ Pass – The Practice Form was successfully completed, submitted, and verified.
+✔️ Pass – The Practice Form was successfully completed, submitted, and verified.  
