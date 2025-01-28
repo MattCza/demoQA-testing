@@ -16,7 +16,8 @@ clean up and refactor related code for improved readability and maintainability.
    - [WebTables Test](#4-webtables-test)
    - [Buttons Test](#5-buttons-test)
    - [Links Test](#6-links-test)
-   - [Practice Form Test](#7-practice-form-test)  
+   - [Practice Form Test](#7-practice-form-test)
+6. [Upcoming Work](#upcoming-work)
 
   
 ## **Project Description**
@@ -293,3 +294,9 @@ Validate that the Practice Form on the demoQA website is correctly filled out an
   
 **Test Result:**  
 ✔️ Pass – The Practice Form was successfully completed, submitted, and verified.  
+
+---
+
+## **Upcoming Work**
+- integrate Selenium Grid to run tests concurrently across multiple browsers,
+- integration with CI/CD pipelines: Automate test execution using Jenkins
