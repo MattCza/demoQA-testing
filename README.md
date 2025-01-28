@@ -10,13 +10,13 @@ clean up and refactor related code for improved readability and maintainability.
 3. [Technologies and Tools Used](#technologies-and-tools-used)
 4. [Project Structure](#project-structure)
 5. [Test Cases](#test-cases)
-   - [TextBox Test](###textbox-test)
-   - [CheckBox Test](###checkbox-test)
-   - [Dynamic Properties Test ](###dynamic-properties-test)
-   - [WebTables Test](###webtables-test)
-   - [Buttons Test](###buttons-test)
-   - [Links Test](###Links-test)
-   - [Practice Form Test](###Practice-Form-test)
+   - [TextBox Test](#textbox-test)
+   - [CheckBox Test](#checkbox-test)
+   - [Dynamic Properties Test ](#dynamic-properties-test)
+   - [WebTables Test](#webtables-test)
+   - [Buttons Test](#buttons-test)
+   - [Links Test](#Links-test)
+   - [Practice Form Test](#Practice-Form-test)
 
   
 ## **Project Description**
@@ -98,7 +98,7 @@ Maven configuration file listing dependencies and build settings.
 This section highlights the automated test cases implemented for the demoQA website.  
 Each test case is designed to verify specific functionalities of the web application, ensuring reliability and correctness.  
 
-### 1. TextBox Test  
+## 1. TextBox Test  
   
 **Objective:**  
 Verify that the TextBox component on the demoQA website accurately displays the user input after form submission.
@@ -125,7 +125,7 @@ Verify that the TextBox component on the demoQA website accurately displays the 
 
 ---  
   
-### 2. CheckBox Test  
+## 2. CheckBox Test  
   
 **Objective:**  
 Verify that the Checkbox component on the demoQA website allows users to select multiple items and accurately reflects the selections.  
@@ -153,7 +153,7 @@ Console should display the list of selected items:
 
 ---  
 
-### 3. Dynamic Properties Test  
+## 3. Dynamic Properties Test  
   
 **Objective:**  
 Verify the behavior of a dynamic element on the Dynamic Properties Page, specifically ensuring that the "Visible After" button becomes visible after a defined delay and validating its text content.
@@ -178,7 +178,7 @@ The test confirms the successful behavior of the dynamic element, verifying that
   
 ---  
 
-### 4. WebTables Test  
+## 4. WebTables Test  
   
 **Objective:**  
 Verify the functionality of adding, editing, and deleting records in the WebTables section of the demoQA application.
@@ -208,7 +208,7 @@ Verify the functionality of adding, editing, and deleting records in the WebTabl
   
 ---  
   
-### 5. Buttons Test  
+## 5. Buttons Test  
   
 **Objective:**  
 Verify that the Buttons component on the demoQA website responds correctly to different user interactions, such as double-click, right-click, and a single dynamic click.
@@ -234,7 +234,7 @@ Verify that the Buttons component on the demoQA website responds correctly to di
   
 ---  
   
-### 6. Links Test  
+## 6. Links Test  
   
 **Objective:**  
 Verify that the Links component on the demoQA website correctly handles link interactions, including navigating to external links and responding to specific HTTP status codes.
@@ -260,7 +260,7 @@ Verify that the Links component on the demoQA website correctly handles link int
   
 ---  
   
-### 7. Practice Form Test  
+## 7. Practice Form Test  
   
 **Objective:**  
 Validate that the Practice Form on the demoQA website is correctly filled out and submitted, ensuring that all fields accept input and handle user interactions properly.
