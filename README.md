@@ -10,14 +10,13 @@ clean up and refactor related code for improved readability and maintainability.
 3. [Technologies and Tools Used](#technologies-and-tools-used)
 4. [Project Structure](#project-structure)
 5. [Test Cases](#test-cases)
-   - [TextBox Test](#1-textbox-test) 
-   
-  [CheckBox Test](#checkbox-test)  
-  [Dynamic Properties Test ](#dynamic-properties-test)  
-  [WebTables Test](#webtables-test)  
-  [Buttons Test](#buttons-test)  
-  [Links Test](#Links-test)  
-  [Practice Form Test](#Practice-Form-test)  
+   - [TextBox Test](#1-textbox-test)
+   - [CheckBox Test](#2-checkbox-test)
+   - [Dynamic Properties Test ](#3-dynamic-properties-test)
+   - [WebTables Test](#4-webtables-test)
+   - [Buttons Test](#5-buttons-test)
+   - [Links Test](#6-links-test)
+   - [Practice Form Test](#7-practice-form-test)  
 
   
 ## **Project Description**
