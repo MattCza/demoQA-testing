@@ -1,5 +1,3 @@
-TO DO:  
-clean up and refactor related code for improved readability and maintainability.  
 # **Automated Testing of demoQA Website**
 
 
