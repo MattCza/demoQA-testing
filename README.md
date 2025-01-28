@@ -10,7 +10,7 @@ clean up and refactor related code for improved readability and maintainability.
 3. [Technologies and Tools Used](#technologies-and-tools-used)
 4. [Project Structure](#project-structure)
 5. [Test Cases](#test-cases)
-  - [TextBox Test](#1.-textbox-test) 
+   - [TextBox Test](#1.-textbox-test) 
    
   [CheckBox Test](#checkbox-test)  
   [Dynamic Properties Test ](#dynamic-properties-test)  
@@ -99,7 +99,7 @@ Maven configuration file listing dependencies and build settings.
 This section highlights the automated test cases implemented for the demoQA website.  
 Each test case is designed to verify specific functionalities of the web application, ensuring reliability and correctness.  
 
-## 1. TextBox Test  
+## **1. TextBox Test**
   
 **Objective:**  
 Verify that the TextBox component on the demoQA website accurately displays the user input after form submission.
