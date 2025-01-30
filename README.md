@@ -57,7 +57,7 @@ The following technologies and tools are used in this project:
 
 ## Project Structure
 
-Here's an overview of the project's structure:
+Here's an overview of the project's structure:  
 
 ```
 demoQA-testing/
