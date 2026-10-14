@@ -20,7 +20,7 @@ public class PracticeFormTest extends BaseTest {
         practiceFormPage.setDateOfBirth("1997", "March", "27");
         practiceFormPage.selectState("NCR");
         practiceFormPage.selectCity("Delhi");
-        practiceFormPage.uploadPicture();
+        practiceFormPage.uploadPicture(getResourcePath("tree.jpg"));
         practiceFormPage.selectHobbyReading();
         practiceFormPage.selectHobbySports();
         practiceFormPage.selectHobbyMusic();

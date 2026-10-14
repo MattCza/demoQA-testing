@@ -10,12 +10,9 @@ public class ElementsPage extends HomePage {
     // Menu item ids (item-0, item-1, ...) repeat in every menu group, so items are located by their route.
     private By textBoxItem = By.cssSelector("a[href='/text-box']");
     private By checkBoxItem = By.cssSelector("a[href='/checkbox']");
-    private By radioButtonItem = By.cssSelector("a[href='/radio-button']");
     private By webTablesItem = By.cssSelector("a[href='/webtables']");
     private By buttonsItem = By.cssSelector("a[href='/buttons']");
     private By linksItem = By.cssSelector("a[href='/links']");
-    private By brokenLinksImagesItem = By.cssSelector("a[href='/broken']");
-    private By uploadAndDownloadItem = By.cssSelector("a[href='/upload-download']");
     private By dynamicPropertiesItem = By.cssSelector("a[href='/dynamic-properties']");
 
     public TextBoxPage clickTextBoxItem() {

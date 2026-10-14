@@ -42,11 +42,6 @@ public class BasePage {
         new Actions(driver).contextClick(findInViewport(locator)).perform();
     }
 
-    protected void setText(By locator, String text) {
-        find(locator).clear();
-        find(locator).sendKeys(text);
-    }
-
     public static void delay(int milliseconds) {
         try {
             Thread.sleep(milliseconds);
