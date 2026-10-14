@@ -1,0 +1,16 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="demoQA UI">
+
+    <test name="Elements">
+        <packages>
+            <package name="com.demoqa.tests.elements"/>
+        </packages>
+    </test>
+
+    <test name="Forms">
+        <packages>
+            <package name="com.demoqa.tests.forms"/>
+        </packages>
+    </test>
+
+</suite>
