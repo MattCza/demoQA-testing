@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -14,6 +15,7 @@ import java.time.Duration;
 
 import static com.demoqa.utilities.JavaScriptUtility.clickJavaScript;
 import static com.demoqa.utilities.JavaScriptUtility.scrollToElementJavaScript;
+import static com.demoqa.utilities.Utility.explicitWaitUntilInvisible;
 import static com.demoqa.utilities.Utility.explicitWaitUntilVisible;
 
 public class PracticeFormPage extends FormsPage {
@@ -38,6 +40,7 @@ public class PracticeFormPage extends FormsPage {
 
     private By submitButton = By.id("submit");
     private By closeLargeModalButton = By.id("closeLargeModal");
+    private By submissionModalTitle = By.id("example-modal-sizes-title-lg");
 
     public void setFirstName(String firstName) {
         driver.findElement(firstNameField).sendKeys(firstName);
@@ -67,8 +70,9 @@ public class PracticeFormPage extends FormsPage {
         new Select(driver.findElement(monthSelectDropDown)).selectByVisibleText(month);
         new Select(driver.findElement(yearSelectDropDown)).selectByVisibleText(year);
 
-        // Click on the specific day
-        click(By.xpath("(//div[contains(@class,'react-datepicker__day react-datepicker__day--')][text()='27'])[2]"));
+        // The calendar also shows days of adjacent months; pick the one from the selected month
+        click(By.xpath("//div[contains(@class,'react-datepicker__day ') and not(contains(@class,'--outside-month'))]"
+                + "[text()='" + Integer.parseInt(day) + "']"));
     }
 
     public void selectHobbySports() {
@@ -115,8 +119,24 @@ public class PracticeFormPage extends FormsPage {
         driver.findElement(submitButton).click();
     }
 
+    public String getSubmissionModalTitle() {
+        explicitWaitUntilVisible(5, submissionModalTitle);
+        return find(submissionModalTitle).getText();
+    }
+
+    public String getSubmittedValue(String label) {
+        return find(By.xpath("//div[@class='modal-body']//td[text()='" + label + "']/following-sibling::td")).getText();
+    }
+
+    public void closeSubmissionModalWithEscape() {
+        new Actions(driver).sendKeys(Keys.ESCAPE).perform();
+        explicitWaitUntilInvisible(5, submissionModalTitle);
+    }
+
+    // Known demoqa defect (2026-10): the Close button does not close the modal, so this wait times out.
     public void clickCloseLargeModalButton() {
         driver.findElement(closeLargeModalButton).click();
+        explicitWaitUntilInvisible(5, submissionModalTitle);
     }
 
 

@@ -2,11 +2,12 @@ package com.demoqa.pages.elements;
 
 import org.openqa.selenium.By;
 
-import java.util.NoSuchElementException;
+import static com.demoqa.utilities.Utility.explicitWaitUntilInvisible;
 
 public class WebTablesPage extends ElementsPage{
 
     private By addButton = By.id("addNewRecordButton");
+    private By registrationModal = By.id("registration-form-modal");
     private By registrationFirstName = By.id("firstName");
     private By registrationLastName = By.id("lastName");
     private By registrationuserEmail = By.id("userEmail");
@@ -15,33 +16,30 @@ public class WebTablesPage extends ElementsPage{
     private By registrationDepartment = By.id("department");
     private By registrationSubmitButton = By.id("submit");
 
+    // Table columns: 1 First Name, 2 Last Name, 3 Age, 4 Email, 5 Salary, 6 Department, 7 Action
+    private String rowXpath(String email) {
+        return "//tbody/tr[td[4][text()='" + email + "']]";
+    }
+
+    private By cell(String email, int column) {
+        return By.xpath(rowXpath(email) + "/td[" + column + "]");
+    }
+
 
     public void clickAddButton(){
         click(addButton);
     }
 
     public boolean isRecordPresent(String email) {
-        By recordLocator = By.xpath("//div[text()='" + email + "']");
-        return isElementPresent(recordLocator);
-    }
-
-    private boolean isElementPresent(By locator) {
-        try {
-            find(locator);
-            return true;
-        } catch (NoSuchElementException e) {
-            return false;
-        }
+        return !driver.findElements(By.xpath(rowXpath(email))).isEmpty();
     }
 
     public void clickEditButton(String email){
-        By editButton = By.xpath("//div[text()='"+ email +"']//following::span[@title='Edit']");
-        click(editButton);
+        click(By.xpath(rowXpath(email) + "//span[@title='Edit']"));
     }
 
     public void deleteTableRecord(String email) {
-        By deleteRecord = By.xpath("//div[text()='"+ email +"']//following::span[@title='Delete']");
-        click(deleteRecord);
+        click(By.xpath(rowXpath(email) + "//span[@title='Delete']"));
     }
 
     public void setFirstName(String firstName) {
@@ -80,32 +78,24 @@ public class WebTablesPage extends ElementsPage{
 
     public void clickSubmitButton() {
         click(registrationSubmitButton);
+        explicitWaitUntilInvisible(5, registrationModal);
     }
 
 
     public String getTableFirstName(String email) {
-        By firstNameField = By.xpath("//div[text()='" + email + "']/preceding::div[3]");
-        return find(firstNameField).getText();
-    }
-
-    public String getTableSalary(String email) {
-        By firstNameField = By.xpath("//div[text()='" + email + "']/following::div[1]");
-        return find(firstNameField).getText();
+        return find(cell(email, 1)).getText();
     }
 
     public String getTableLastName(String email) {
-        By lastNameField = By.xpath("//div[text()='" + email + "']/preceding::div[2]");
-        return find(lastNameField).getText();
+        return find(cell(email, 2)).getText();
     }
 
     public String getTableAge(String email) {
-        By ageField = By.xpath("//div[text()='" + email + "']/preceding::div[1]");
-        return find(ageField).getText();
+        return find(cell(email, 3)).getText();
     }
 
-
-
-
-
+    public String getTableSalary(String email) {
+        return find(cell(email, 5)).getText();
+    }
 
 }

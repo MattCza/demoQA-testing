@@ -2,6 +2,7 @@ package com.demoqa.utilities;
 
 import com.demoqa.base.BasePage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,7 +14,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.io.File;
 import java.time.Duration;
 import java.util.List;
-import java.util.NoSuchElementException;
+
 import java.util.stream.Collectors;
 
 public class Utility {
@@ -31,6 +32,11 @@ public class Utility {
     public static void explicitWaitUntilVisible(int seconds, By locator) {
         WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(seconds));
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+    }
+
+    public static void explicitWaitUntilInvisible(int seconds, By locator) {
+        WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(seconds));
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
     }
 
     public static void fluentWaitUntilVisible(int seconds, By locator) {

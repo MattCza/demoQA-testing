@@ -1,6 +1,7 @@
 package com.demoqa.base;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -25,14 +26,20 @@ public class BasePage {
         find(locator).click();
     }
 
-    protected void doubleClick(By locator) {
+    // Actions do not scroll the target into view in Firefox, so pointer actions scroll first.
+    // 'instant' overrides the page's CSS smooth scrolling, which would move the element mid-action.
+    private WebElement findInViewport(By locator) {
         WebElement webElement = find(locator);
-        new Actions(driver).doubleClick(webElement).perform();
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center', behavior: 'instant'});", webElement);
+        return webElement;
+    }
+
+    protected void doubleClick(By locator) {
+        new Actions(driver).doubleClick(findInViewport(locator)).perform();
     }
 
     protected void rightClick(By locator) {
-        WebElement webElement = find(locator);
-        new Actions(driver).contextClick(webElement).perform();
+        new Actions(driver).contextClick(findInViewport(locator)).perform();
     }
 
     protected void setText(By locator, String text) {

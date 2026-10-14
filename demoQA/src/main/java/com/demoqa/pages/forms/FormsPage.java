@@ -6,7 +6,7 @@ import org.openqa.selenium.By;
 import static com.demoqa.utilities.JavaScriptUtility.scrollToElementJavaScript;
 
 public class FormsPage extends HomePage {
-    private By practiceFromItem = By.xpath("//li[@id='item-0']/span[text()='Practice Form']");
+    private By practiceFromItem = By.cssSelector("a[href='/automation-practice-form']");
 
     public PracticeFormPage clickPracticeBoxItem() {
         scrollToElementJavaScript(practiceFromItem);

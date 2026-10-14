@@ -13,12 +13,12 @@ import static com.demoqa.utilities.JavaScriptUtility.scrollToElementJavaScript;
 
 public class HomePage extends BasePage {
 
-    private By elementsCard = By.xpath("//div[@id='app']//h5[text()='Elements']");
-    private By formsCard = By.xpath("//div[@id='app']//h5[text()='Forms']");
-    private By alertsFrameWindowsCard = By.xpath("//div[@id='app']//h5[contains(text(),'Frame')]");
-    private By widgetsCard = By.xpath("//div[@id='app']//h5[text()='Widgets']");
-    private By interactionsCard = By.xpath("//div[@id='app']//h5[text()='Interactions']");
-    private By bookStoreApplicationCard = By.xpath("//div[@id='app']//h5[contains(text(), 'Store')]");
+    private By elementsCard = By.xpath("//div[@class='card-body']/h5[text()='Elements']");
+    private By formsCard = By.xpath("//div[@class='card-body']/h5[text()='Forms']");
+    private By alertsFrameWindowsCard = By.xpath("//div[@class='card-body']/h5[contains(text(),'Frame')]");
+    private By widgetsCard = By.xpath("//div[@class='card-body']/h5[text()='Widgets']");
+    private By interactionsCard = By.xpath("//div[@class='card-body']/h5[text()='Interactions']");
+    private By bookStoreApplicationCard = By.xpath("//div[@class='card-body']/h5[contains(text(), 'Store')]");
 
     public ElementsPage goToElementsCard() {
         scrollToElementJavaScript(elementsCard);

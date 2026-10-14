@@ -5,8 +5,6 @@ import com.demoqa.pages.elements.WebTablesPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import static com.demoqa.base.BasePage.delay;
-
 public class WebTablesTest extends BaseTest {
 
     @Test
@@ -19,9 +17,11 @@ public class WebTablesTest extends BaseTest {
         webTablesPage.clickAddButton();
         webTablesPage.addEmployee("Matt", "Smith", email, "27", "10000", "Technology");
 
-        delay(1234);
-        Assert.assertTrue(webTablesPage.isRecordPresent(email));
+        Assert.assertTrue(webTablesPage.isRecordPresent(email),
+                "\n Added record is not present in the table \n");
         webTablesPage.deleteTableRecord(email);
+        Assert.assertFalse(webTablesPage.isRecordPresent(email),
+                "\n Deleted record is still present in the table \n");
 
         webTablesPage.clickEditButton(emailToEdit);
         webTablesPage.setSalary(expectedSalary);

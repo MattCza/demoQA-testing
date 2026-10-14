@@ -7,15 +7,16 @@ import static com.demoqa.utilities.JavaScriptUtility.scrollToElementJavaScript;
 
 public class ElementsPage extends HomePage {
 
-    private By textBoxItem = By.xpath("//li[@id='item-0']/span[text()='Text Box']");
-    private By checkBoxItem = By.xpath("//li[@id='item-1']/span[text()='Check Box']");
-    private By radioButtonItem = By.xpath("//li[@id='item-2']/span[text()='Radio Button']");
-    private By webTablesItem = By.xpath("//li[@id='item-3']/span[text()='Web Tables']");
-    private By buttonsItem = By.xpath("//li[@id='item-4']/span[text()='Buttons']");
-    private By linksItem = By.xpath("//li[@id='item-5']/span[text()='Links']");
-    private By brokenLinksImagesItem = By.xpath("//li[@id='item-6']/span[contains(text(), 'Broken')]");
-    private By uploadAndDownloadItem = By.xpath("//li[@id='item-7']/span[contains(text(), 'Upload')]");
-    private By dynamicPropertiesItem = By.xpath("//li[@id='item-8']/span[contains(text(), 'Dynamic')]");
+    // Menu item ids (item-0, item-1, ...) repeat in every menu group, so items are located by their route.
+    private By textBoxItem = By.cssSelector("a[href='/text-box']");
+    private By checkBoxItem = By.cssSelector("a[href='/checkbox']");
+    private By radioButtonItem = By.cssSelector("a[href='/radio-button']");
+    private By webTablesItem = By.cssSelector("a[href='/webtables']");
+    private By buttonsItem = By.cssSelector("a[href='/buttons']");
+    private By linksItem = By.cssSelector("a[href='/links']");
+    private By brokenLinksImagesItem = By.cssSelector("a[href='/broken']");
+    private By uploadAndDownloadItem = By.cssSelector("a[href='/upload-download']");
+    private By dynamicPropertiesItem = By.cssSelector("a[href='/dynamic-properties']");
 
     public TextBoxPage clickTextBoxItem() {
         scrollToElementJavaScript(textBoxItem);

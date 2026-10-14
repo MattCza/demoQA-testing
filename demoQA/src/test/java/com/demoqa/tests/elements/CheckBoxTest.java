@@ -5,23 +5,27 @@ import com.demoqa.pages.elements.CheckBoxPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.List;
+
 public class CheckBoxTest extends BaseTest {
 
     @Test
     public void testCheckBox() {
         CheckBoxPage checkBoxPage = homePage.goToElementsCard().clickCheckBoxItem();
-        checkBoxPage.clickExpendAllButton();
+        checkBoxPage.expandNodes("Home", "Documents", "Office", "Downloads");
 
-        checkBoxPage.clickPublicItem();
-        checkBoxPage.clickExcelFile();
+        checkBoxPage.selectItem("Public");
+        checkBoxPage.selectItem("Excel File.doc");
 
-        Assert.assertTrue(checkBoxPage.isExcelFileSelected(),
+        Assert.assertTrue(checkBoxPage.isItemChecked("Public"),
+                "Public is NOT selected!");
+        Assert.assertTrue(checkBoxPage.isItemChecked("Excel File.doc"),
                 "Excel File is NOT selected!");
+        Assert.assertFalse(checkBoxPage.isItemChecked("Word File.doc"),
+                "Word File should NOT be selected!");
 
-        Assert.assertFalse(checkBoxPage.isWordFileSelected(),
-                "Word File is NOT selected!");
-
-        System.out.println("Selected items: " + checkBoxPage.getSelectedItems());
+        Assert.assertEquals(checkBoxPage.getSelectedItems(), List.of("public", "excelFile"),
+                "Result panel does not list exactly the selected items");
     }
 
 

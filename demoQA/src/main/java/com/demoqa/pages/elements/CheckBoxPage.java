@@ -7,55 +7,62 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.demoqa.utilities.JavaScriptUtility.scrollToElementJavaScript;
+import static com.demoqa.utilities.Utility.explicitWaitUntilVisible;
 
 public class CheckBoxPage extends ElementsPage {
-    private By expendAllButton = By.xpath("//button[@class='rct-option rct-option-expand-all']");
+    private By selectedItems = By.cssSelector("#result .text-success");
 
-    private By publicItem = By.xpath("//div[@class='check-box-tree-wrapper']//span[text()='Public']");
-    private By excelFile = By.xpath("//div[@class='check-box-tree-wrapper']//span[text()='Excel File.doc']");
-    private By excelFileCheckBox = By.id("tree-node-excelFile");
-    private By wordFile = By.xpath("//div[@class='check-box-tree-wrapper']//span[text()='Word File.doc']");
-    private By wordFileCheckBox = By.id("tree-node-wordFile");
-//    private By selectedItems = By.xpath("//span[@class='text-success']");
-
-//    List<WebElement> selectedElements = driver.findElements(By.cssSelector("span.text-success"));
-//    List<String> selectedItems = new ArrayList<>();
-
-
-    public void clickExpendAllButton() {
-        click(expendAllButton);
+    private String treeNodeXpath(String title) {
+        return "//div[@role='treeitem'][.//span[@class='rc-tree-title' and text()='" + title + "']]";
     }
 
-    public void clickPublicItem() {
-        scrollToElementJavaScript(publicItem);
-        click(publicItem);
+    private By treeNode(String title) {
+        return By.xpath(treeNodeXpath(title));
     }
 
-    public void clickExcelFile() {
-        scrollToElementJavaScript(excelFile);
-        click(excelFile);
+    private By nodeSwitcher(String title) {
+        return By.xpath(treeNodeXpath(title) + "/span[contains(@class,'rc-tree-switcher')]");
+    }
+
+    private By nodeCheckbox(String title) {
+        return By.xpath("//span[@role='checkbox' and @aria-label='Select " + title + "']");
+    }
+
+    public void expandNode(String title) {
+        explicitWaitUntilVisible(5, treeNode(title));
+        if ("false".equals(find(treeNode(title)).getAttribute("aria-expanded"))) {
+            scrollToElementJavaScript(nodeSwitcher(title));
+            click(nodeSwitcher(title));
+        }
+    }
+
+    public void expandNodes(String... titles) {
+        for (String title : titles) {
+            expandNode(title);
+        }
+    }
+
+    public void selectItem(String title) {
+        explicitWaitUntilVisible(5, nodeCheckbox(title));
+        if (!isItemChecked(title)) {
+            scrollToElementJavaScript(nodeCheckbox(title));
+            click(nodeCheckbox(title));
+        }
+    }
+
+    public boolean isItemChecked(String title) {
+        return "true".equals(find(nodeCheckbox(title)).getAttribute("aria-checked"));
     }
 
     public List<String> getSelectedItems() {
-        List<WebElement> selectedElements = driver.findElements(By.cssSelector(".text-success"));
-        List<String> selectedItems = new ArrayList<>();
-
-        for (WebElement element : selectedElements) {
+        List<String> items = new ArrayList<>();
+        for (WebElement element : driver.findElements(selectedItems)) {
             String itemText = element.getText().trim();
             if (!itemText.isEmpty()) {
-                selectedItems.add(itemText);
+                items.add(itemText);
             }
         }
-        return selectedItems;
+        return items;
     }
-
-    public boolean isExcelFileSelected(){
-        return find(excelFileCheckBox).isSelected();
-    }
-
-    public boolean isWordFileSelected(){
-        return find(wordFileCheckBox).isSelected();
-    }
-
 
 }

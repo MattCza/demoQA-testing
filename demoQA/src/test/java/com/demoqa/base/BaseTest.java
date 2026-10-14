@@ -5,7 +5,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.*;
 
-import static com.demoqa.base.BasePage.delay;
 import static com.demoqa.utilities.Utility.setUtilityDriver;
 
 public class BaseTest {
@@ -17,7 +16,6 @@ public class BaseTest {
 
     @BeforeClass
     public void setUp(){
-//        System.setProperty("webdriver.chrome.driver", "C:\\Users\\m.czajkowsk2\\Desktop\\Projects\\driver\\chromedriver-win64\\chromedriver.exe");
         driver = new FirefoxDriver();
         driver.manage().window().maximize();
     }
@@ -31,11 +29,12 @@ public class BaseTest {
         homePage = new HomePage();
     }
 
-//    @AfterClass
-//    public void tearDown() {
-//        delay(3000);
-//        driver.quit();
-//    }
+    @AfterClass(alwaysRun = true)
+    public void tearDown() {
+        if (driver != null) {
+            driver.quit();
+        }
+    }
 
 
 }
