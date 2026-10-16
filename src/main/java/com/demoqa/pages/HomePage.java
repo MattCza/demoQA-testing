@@ -8,8 +8,7 @@ import com.demoqa.pages.forms.FormsPage;
 import com.demoqa.pages.interactions.InteractionsPage;
 import com.demoqa.pages.widgets.WidgetsPage;
 import org.openqa.selenium.By;
-
-import static com.demoqa.utilities.JavaScriptUtility.scrollToElementJavaScript;
+import org.openqa.selenium.WebDriver;
 
 public class HomePage extends BasePage {
 
@@ -20,40 +19,44 @@ public class HomePage extends BasePage {
     private By interactionsCard = By.xpath("//div[@class='card-body']/h5[text()='Interactions']");
     private By bookStoreApplicationCard = By.xpath("//div[@class='card-body']/h5[contains(text(), 'Store')]");
 
+    public HomePage(WebDriver driver) {
+        super(driver);
+    }
+
     public ElementsPage goToElementsCard() {
         scrollToElementJavaScript(elementsCard);
         click(elementsCard);
-        return new ElementsPage();
+        return new ElementsPage(driver);
     }
 
     public FormsPage goToFormsCard() {
         scrollToElementJavaScript(formsCard);
         click(formsCard);
-        return new FormsPage();
+        return new FormsPage(driver);
     }
 
     public AlertsFrameWindowsPage goToAlertsFrameWindowsCard() {
         scrollToElementJavaScript(alertsFrameWindowsCard);
         click(alertsFrameWindowsCard);
-        return new AlertsFrameWindowsPage();
+        return new AlertsFrameWindowsPage(driver);
     }
 
     public WidgetsPage goToWidgetsCard() {
         scrollToElementJavaScript(widgetsCard);
         click(widgetsCard);
-        return new WidgetsPage();
+        return new WidgetsPage(driver);
     }
 
     public InteractionsPage goToInteractionsCard() {
         scrollToElementJavaScript(interactionsCard);
         click(interactionsCard);
-        return new InteractionsPage();
+        return new InteractionsPage(driver);
     }
 
     public BookStoreApplicationPage goToBookStoreApplicationCard () {
         scrollToElementJavaScript(bookStoreApplicationCard);
         click(bookStoreApplicationCard);
-        return new BookStoreApplicationPage();
+        return new BookStoreApplicationPage(driver);
     }
 
 

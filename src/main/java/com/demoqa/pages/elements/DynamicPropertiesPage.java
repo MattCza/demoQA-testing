@@ -1,17 +1,17 @@
 package com.demoqa.pages.elements;
 
 import org.openqa.selenium.By;
-
-import static com.demoqa.utilities.Utility.*;
+import org.openqa.selenium.WebDriver;
 
 public class DynamicPropertiesPage extends ElementsPage {
     private By visibleAfterButton = By.id("visibleAfter");
 
+    public DynamicPropertiesPage(WebDriver driver) {
+        super(driver);
+    }
+
     public String getVisibleAfterButtonText() {
-        explicitWaitUntilVisible(5, visibleAfterButton);
-        String visibleText = getText(visibleAfterButton);
-        System.out.println("Button Text: " + visibleText);
-        return visibleText;
+        return waitUntilVisible(visibleAfterButton).getText();
     }
 
 }

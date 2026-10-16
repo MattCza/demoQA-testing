@@ -2,14 +2,9 @@ package com.demoqa.pages.forms;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-
-import static com.demoqa.utilities.JavaScriptUtility.clickJavaScript;
-import static com.demoqa.utilities.JavaScriptUtility.scrollToElementJavaScript;
-import static com.demoqa.utilities.Utility.explicitWaitUntilInvisible;
-import static com.demoqa.utilities.Utility.explicitWaitUntilVisible;
-import static com.demoqa.utilities.Utility.selectByVisibleText;
 
 public class PracticeFormPage extends FormsPage {
     private By firstNameField = By.id("firstName");
@@ -34,26 +29,30 @@ public class PracticeFormPage extends FormsPage {
     private By closeLargeModalButton = By.id("closeLargeModal");
     private By submissionModalTitle = By.id("example-modal-sizes-title-lg");
 
+    public PracticeFormPage(WebDriver driver) {
+        super(driver);
+    }
+
     public void setFirstName(String firstName) {
-        driver.findElement(firstNameField).sendKeys(firstName);
+        type(firstNameField, firstName);
     }
 
     public void setLastName(String lastName) {
-        driver.findElement(lastNameField).sendKeys(lastName);
+        type(lastNameField, lastName);
     }
 
     public void setEmail(String email) {
-        driver.findElement(emailField).sendKeys(email);
+        type(emailField, email);
     }
 
     public void selectGenderMale() {
-        if (!driver.findElement(genderMaleField).isSelected()) {
+        if (!find(genderMaleField).isSelected()) {
             clickJavaScript(genderMaleField);
         }
     }
 
     public void setMobileNumber(String mobileNumber) {
-        driver.findElement(mobileNumberField).sendKeys(mobileNumber);
+        type(mobileNumberField, mobileNumber);
     }
 
     public void setDateOfBirth(String year, String month, String day) {
@@ -87,31 +86,32 @@ public class PracticeFormPage extends FormsPage {
     }
 
     public void uploadPicture(String absoluteFilePath) {
-        driver.findElement(uploadPictureInput).sendKeys(absoluteFilePath);
+        // File inputs accept a path even when visually hidden, so only presence is required
+        find(uploadPictureInput).sendKeys(absoluteFilePath);
     }
 
     public void setCurrentAddress(String address) {
-        driver.findElement(currentAddressField).sendKeys(address);
+        type(currentAddressField, address);
     }
 
     public void selectState(String state) {
-        WebElement stateInput = driver.findElement(stateDropDown);
+        WebElement stateInput = find(stateDropDown);
         stateInput.sendKeys(state);
         stateInput.sendKeys(Keys.ENTER);
     }
 
     public void selectCity(String city) {
-        WebElement cityInput = driver.findElement(cityDropDown);
+        WebElement cityInput = find(cityDropDown);
         cityInput.sendKeys(city);
         cityInput.sendKeys(Keys.ENTER);
     }
 
     public void clickSubmitButton() {
-        driver.findElement(submitButton).click();
+        click(submitButton);
     }
 
     public String getSubmissionModalTitle() {
-        explicitWaitUntilVisible(5, submissionModalTitle);
+        waitUntilVisible(submissionModalTitle);
         return find(submissionModalTitle).getText();
     }
 
@@ -121,13 +121,13 @@ public class PracticeFormPage extends FormsPage {
 
     public void closeSubmissionModalWithEscape() {
         new Actions(driver).sendKeys(Keys.ESCAPE).perform();
-        explicitWaitUntilInvisible(5, submissionModalTitle);
+        waitUntilInvisible(submissionModalTitle);
     }
 
     // Known demoqa defect (2026-10): the Close button does not close the modal, so this wait times out.
     public void clickCloseLargeModalButton() {
-        driver.findElement(closeLargeModalButton).click();
-        explicitWaitUntilInvisible(5, submissionModalTitle);
+        click(closeLargeModalButton);
+        waitUntilInvisible(submissionModalTitle);
     }
 
 

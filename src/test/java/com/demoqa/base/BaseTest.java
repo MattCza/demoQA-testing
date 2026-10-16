@@ -1,43 +1,36 @@
 package com.demoqa.base;
 
+import com.demoqa.config.Config;
+import com.demoqa.driver.DriverManager;
+import com.demoqa.listeners.TestListener;
 import com.demoqa.pages.HomePage;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.*;
 
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Paths;
 
-import static com.demoqa.utilities.Utility.setUtilityDriver;
-
+@Listeners(TestListener.class)
 public class BaseTest {
-    protected String DEMOQA_URL = "https://demoqa.com/";
-    protected WebDriver driver;
-    protected BasePage basePage;
     protected HomePage homePage;
 
 
     @BeforeClass
     public void setUp(){
-        driver = new FirefoxDriver();
-        driver.manage().window().maximize();
+        DriverManager.initDriver();
     }
 
     @BeforeMethod
     public void loadApplication() {
-        driver.get(DEMOQA_URL);
-        basePage = new BasePage();
-        basePage.setDriver(driver);
-        setUtilityDriver();
-        homePage = new HomePage();
+        WebDriver driver = DriverManager.getDriver();
+        driver.get(Config.baseUrl() + "/");
+        homePage = new HomePage(driver);
     }
 
     @AfterClass(alwaysRun = true)
     public void tearDown() {
-        if (driver != null) {
-            driver.quit();
-        }
+        DriverManager.quitDriver();
     }
 
     protected String getResourcePath(String resourceName) {

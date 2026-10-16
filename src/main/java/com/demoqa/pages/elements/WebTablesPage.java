@@ -1,8 +1,7 @@
 package com.demoqa.pages.elements;
 
 import org.openqa.selenium.By;
-
-import static com.demoqa.utilities.Utility.explicitWaitUntilInvisible;
+import org.openqa.selenium.WebDriver;
 
 public class WebTablesPage extends ElementsPage{
 
@@ -17,6 +16,10 @@ public class WebTablesPage extends ElementsPage{
     private By registrationSubmitButton = By.id("submit");
 
     // Table columns: 1 First Name, 2 Last Name, 3 Age, 4 Email, 5 Salary, 6 Department, 7 Action
+
+    public WebTablesPage(WebDriver driver) {
+        super(driver);
+    }
     private String rowXpath(String email) {
         return "//tbody/tr[td[4][text()='" + email + "']]";
     }
@@ -78,7 +81,7 @@ public class WebTablesPage extends ElementsPage{
 
     public void clickSubmitButton() {
         click(registrationSubmitButton);
-        explicitWaitUntilInvisible(5, registrationModal);
+        waitUntilInvisible(registrationModal);
     }
 
 

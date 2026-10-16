@@ -2,8 +2,7 @@ package com.demoqa.pages.elements;
 
 import com.demoqa.pages.HomePage;
 import org.openqa.selenium.By;
-
-import static com.demoqa.utilities.JavaScriptUtility.scrollToElementJavaScript;
+import org.openqa.selenium.WebDriver;
 
 public class ElementsPage extends HomePage {
 
@@ -15,40 +14,44 @@ public class ElementsPage extends HomePage {
     private By linksItem = By.cssSelector("a[href='/links']");
     private By dynamicPropertiesItem = By.cssSelector("a[href='/dynamic-properties']");
 
+    public ElementsPage(WebDriver driver) {
+        super(driver);
+    }
+
     public TextBoxPage clickTextBoxItem() {
         scrollToElementJavaScript(textBoxItem);
         click(textBoxItem);
-        return new TextBoxPage();
+        return new TextBoxPage(driver);
     }
 
     public CheckBoxPage clickCheckBoxItem() {
         scrollToElementJavaScript(checkBoxItem);
         click(checkBoxItem);
-        return new CheckBoxPage();
+        return new CheckBoxPage(driver);
     }
 
     public WebTablesPage clickWebTablesItem() {
         scrollToElementJavaScript(webTablesItem);
         click(webTablesItem);
-        return new WebTablesPage();
+        return new WebTablesPage(driver);
     }
 
     public ButtonsPage clickButtonsItem() {
         scrollToElementJavaScript(buttonsItem);
         click(buttonsItem);
-        return new ButtonsPage();
+        return new ButtonsPage(driver);
     }
 
     public LinksPage clickLinksItem() {
         scrollToElementJavaScript(linksItem);
         click(linksItem);
-        return new LinksPage();
+        return new LinksPage(driver);
     }
 
     public DynamicPropertiesPage clickDynamicPropertiesItem() {
         scrollToElementJavaScript(dynamicPropertiesItem);
         click(dynamicPropertiesItem);
-        return new DynamicPropertiesPage();
+        return new DynamicPropertiesPage(driver);
     }
 
 

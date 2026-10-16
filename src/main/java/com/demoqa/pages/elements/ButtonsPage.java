@@ -1,6 +1,7 @@
 package com.demoqa.pages.elements;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 
 public class ButtonsPage extends ElementsPage{
 
@@ -11,6 +12,10 @@ public class ButtonsPage extends ElementsPage{
     private By doubleClickMeButtonDisplayed = By.id("doubleClickMessage");
     private By rightClickMeButtonDisplayed = By.id("rightClickMessage");
     private By clickMeButtonDisplayed = By.id("dynamicClickMessage");
+
+    public ButtonsPage(WebDriver driver) {
+        super(driver);
+    }
 
     public void doubleClickButton(){
         doubleClick(doubleClickMeButton);

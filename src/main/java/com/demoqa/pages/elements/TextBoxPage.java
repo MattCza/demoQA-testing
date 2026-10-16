@@ -1,9 +1,7 @@
 package com.demoqa.pages.elements;
 
 import org.openqa.selenium.By;
-
-import static com.demoqa.utilities.JavaScriptUtility.scrollToElementJavaScript;
-import static com.demoqa.utilities.Utility.getText;
+import org.openqa.selenium.WebDriver;
 
 public class TextBoxPage extends ElementsPage {
     private By fullNameField = By.id("userName");
@@ -18,20 +16,24 @@ public class TextBoxPage extends ElementsPage {
     private By currentAddressResult = By.xpath("//p[@id='currentAddress']");
     private By permanentAddressResult = By.xpath("//p[@id='permanentAddress']");
 
+    public TextBoxPage(WebDriver driver) {
+        super(driver);
+    }
+
     public void setFullNameField(String fullName) {
-        find(fullNameField).sendKeys(fullName);
+        type(fullNameField, fullName);
     }
 
     public void setEmailField(String email) {
-        find(emailField).sendKeys(email);
+        type(emailField, email);
     }
 
     public void setCurrentAddressField(String currentAddress) {
-        find(currentAddressField).sendKeys(currentAddress);
+        type(currentAddressField, currentAddress);
     }
 
     public void setPermanentAddressField(String permanentAddress) {
-        find(permanentAddressField).sendKeys(permanentAddress);
+        type(permanentAddressField, permanentAddress);
     }
 
     public void clickSubmitButton() {

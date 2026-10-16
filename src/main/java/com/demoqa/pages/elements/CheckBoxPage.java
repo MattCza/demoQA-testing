@@ -1,16 +1,18 @@
 package com.demoqa.pages.elements;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.demoqa.utilities.JavaScriptUtility.scrollToElementJavaScript;
-import static com.demoqa.utilities.Utility.explicitWaitUntilVisible;
-
 public class CheckBoxPage extends ElementsPage {
     private By selectedItems = By.cssSelector("#result .text-success");
+
+    public CheckBoxPage(WebDriver driver) {
+        super(driver);
+    }
 
     private String treeNodeXpath(String title) {
         return "//div[@role='treeitem'][.//span[@class='rc-tree-title' and text()='" + title + "']]";
@@ -29,7 +31,7 @@ public class CheckBoxPage extends ElementsPage {
     }
 
     public void expandNode(String title) {
-        explicitWaitUntilVisible(5, treeNode(title));
+        waitUntilVisible(treeNode(title));
         if ("false".equals(find(treeNode(title)).getAttribute("aria-expanded"))) {
             scrollToElementJavaScript(nodeSwitcher(title));
             click(nodeSwitcher(title));
@@ -43,7 +45,7 @@ public class CheckBoxPage extends ElementsPage {
     }
 
     public void selectItem(String title) {
-        explicitWaitUntilVisible(5, nodeCheckbox(title));
+        waitUntilVisible(nodeCheckbox(title));
         if (!isItemChecked(title)) {
             scrollToElementJavaScript(nodeCheckbox(title));
             click(nodeCheckbox(title));
