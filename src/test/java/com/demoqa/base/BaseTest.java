@@ -1,36 +1,35 @@
 package com.demoqa.base;
 
-import com.demoqa.config.Config;
 import com.demoqa.driver.DriverManager;
 import com.demoqa.listeners.TestListener;
-import com.demoqa.pages.HomePage;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Listeners;
 
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Paths;
 
+/**
+ * One browser per test class. Each test opens the page it needs by URL (page.open()),
+ * so tests do not depend on each other or on the home page navigation.
+ */
 @Listeners(TestListener.class)
 public class BaseTest {
-    protected HomePage homePage;
-
 
     @BeforeClass
     public void setUp(){
         DriverManager.initDriver();
     }
 
-    @BeforeMethod
-    public void loadApplication() {
-        WebDriver driver = DriverManager.getDriver();
-        driver.get(Config.baseUrl() + "/");
-        homePage = new HomePage(driver);
-    }
-
     @AfterClass(alwaysRun = true)
     public void tearDown() {
         DriverManager.quitDriver();
+    }
+
+    protected WebDriver driver() {
+        return DriverManager.getDriver();
     }
 
     protected String getResourcePath(String resourceName) {
@@ -44,6 +43,5 @@ public class BaseTest {
             throw new IllegalStateException("Invalid resource URI: " + resource, e);
         }
     }
-
 
 }

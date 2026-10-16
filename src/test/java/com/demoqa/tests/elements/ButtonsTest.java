@@ -8,17 +8,37 @@ import org.testng.annotations.Test;
 public class ButtonsTest extends BaseTest {
 
     @Test
-    public void buttonsTest() {
-        ButtonsPage buttonsPage = homePage.goToElementsCard().clickButtonsItem();
+    public void doubleClickShowsDoubleClickMessage() {
+        ButtonsPage buttonsPage = new ButtonsPage(driver()).open();
         buttonsPage.doubleClickButton();
+
+        Assert.assertEquals(buttonsPage.getDoubleClickMessage(), "You have done a double click");
+    }
+
+    @Test
+    public void rightClickShowsRightClickMessage() {
+        ButtonsPage buttonsPage = new ButtonsPage(driver()).open();
         buttonsPage.rightClickButton();
+
+        Assert.assertEquals(buttonsPage.getRightClickMessage(), "You have done a right click");
+    }
+
+    @Test
+    public void singleClickShowsDynamicClickMessage() {
+        ButtonsPage buttonsPage = new ButtonsPage(driver()).open();
         buttonsPage.clickButton();
 
-        Assert.assertTrue(buttonsPage.isClickMeButtonDisplayed(),
-                "\nDynamic click button is not clicked properly \n");
-        Assert.assertTrue(buttonsPage.isDoubleClickMeButtonDisplayed(),
-                "\nDouble click button is not clicked properly \n");
-        Assert.assertTrue(buttonsPage.isRightClickMeButtonDisplayed(),
-                "\nRight Click button is not clicked properly \n");
+        Assert.assertEquals(buttonsPage.getDynamicClickMessage(), "You have done a dynamic click");
+    }
+
+    @Test
+    public void singleClickIsNotTreatedAsDoubleOrRightClick() {
+        ButtonsPage buttonsPage = new ButtonsPage(driver()).open();
+        buttonsPage.clickButton();
+        // Waiting for the dynamic click message guarantees the click has been handled before checking absence
+        buttonsPage.getDynamicClickMessage();
+
+        Assert.assertFalse(buttonsPage.isDoubleClickMessageDisplayed(), "Single click was treated as a double click");
+        Assert.assertFalse(buttonsPage.isRightClickMessageDisplayed(), "Single click was treated as a right click");
     }
 }

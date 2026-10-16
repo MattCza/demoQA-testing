@@ -3,12 +3,15 @@ package com.demoqa.base;
 import com.demoqa.config.Config;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.net.URI;
 
 public class BasePage {
     protected final WebDriver driver;
@@ -17,6 +20,27 @@ public class BasePage {
     public BasePage(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Config.timeout());
+    }
+
+    protected void openPath(String path) {
+        driver.get(Config.baseUrl() + path);
+    }
+
+    public String getCurrentPath() {
+        return URI.create(driver.getCurrentUrl()).getPath();
+    }
+
+    /**
+     * Waits until the browser shows the given path and returns the path actually shown,
+     * so a navigation assertion reports the real location instead of a timeout.
+     */
+    public String waitForPath(String expectedPath) {
+        try {
+            wait.until(d -> expectedPath.equals(getCurrentPath()));
+        } catch (TimeoutException e) {
+            // fall through: the caller asserts on the returned path
+        }
+        return getCurrentPath();
     }
 
     // Waits for presence only: some inputs (e.g. styled checkboxes) are hidden and handled via JavaScript.
@@ -43,11 +67,16 @@ public class BasePage {
     }
 
     // Actions do not scroll the target into view in Firefox, so pointer actions scroll first.
-    // 'instant' overrides the page's CSS smooth scrolling, which would move the element mid-action.
     private WebElement findInViewport(By locator) {
         WebElement webElement = find(locator);
-        javaScript().executeScript("arguments[0].scrollIntoView({block: 'center', behavior: 'instant'});", webElement);
+        scrollIntoView(webElement);
         return webElement;
+    }
+
+    // 'instant' overrides the page's CSS smooth scrolling, which would move the element mid-action;
+    // 'center' keeps it clear of the sticky header and footer.
+    private void scrollIntoView(WebElement webElement) {
+        javaScript().executeScript("arguments[0].scrollIntoView({block: 'center', behavior: 'instant'});", webElement);
     }
 
     protected void doubleClick(By locator) {
@@ -71,7 +100,7 @@ public class BasePage {
     }
 
     protected void scrollToElementJavaScript(By locator) {
-        javaScript().executeScript("arguments[0].scrollIntoView();", find(locator));
+        scrollIntoView(find(locator));
     }
 
     protected void clickJavaScript(By locator) {

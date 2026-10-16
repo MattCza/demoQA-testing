@@ -8,10 +8,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CheckBoxPage extends ElementsPage {
+    public static final String PATH = "/checkbox";
+
     private By selectedItems = By.cssSelector("#result .text-success");
 
     public CheckBoxPage(WebDriver driver) {
         super(driver);
+    }
+
+    public CheckBoxPage open() {
+        openPath(PATH);
+        return this;
     }
 
     private String treeNodeXpath(String title) {
@@ -53,7 +60,16 @@ public class CheckBoxPage extends ElementsPage {
     }
 
     public boolean isItemChecked(String title) {
-        return "true".equals(find(nodeCheckbox(title)).getAttribute("aria-checked"));
+        return "true".equals(checkboxState(title));
+    }
+
+    // A parent with only some children selected is shown as partially checked
+    public boolean isItemPartiallyChecked(String title) {
+        return "mixed".equals(checkboxState(title));
+    }
+
+    private String checkboxState(String title) {
+        return find(nodeCheckbox(title)).getAttribute("aria-checked");
     }
 
     public List<String> getSelectedItems() {

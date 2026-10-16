@@ -1,32 +1,45 @@
 package com.demoqa.tests.elements;
 
 import com.demoqa.base.BaseTest;
+import com.demoqa.config.Config;
 import com.demoqa.pages.elements.LinksPage;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class LinksTest extends BaseTest {
 
     @Test
-    public void linkTest() {
-        String actualMovedResponse;
-        String actualForbiddenResponse;
+    public void simpleLinkOpensHomePageInNewTab() {
+        LinksPage linksPage = new LinksPage(driver()).open();
 
-        LinksPage linksPage = homePage.goToElementsCard().clickLinksItem();
-        linksPage.clickSimpleLink();
-        linksPage.closeWindow();
+        String newTabUrl = linksPage.openSimpleLinkAndGetNewTabUrl();
 
-        linksPage.clickMovedResponseLink();
-        actualMovedResponse = linksPage.getResponse();
-        Assert.assertTrue(actualMovedResponse.contains("301")
-                        && actualMovedResponse.contains("Moved Permanently"),
-                "\n Actual Response Does Not Contain '301' and 'Moved Permanently' \n");
+        Assert.assertEquals(newTabUrl, Config.baseUrl() + "/", "Simple link opened an unexpected page");
+        Assert.assertEquals(linksPage.getOpenWindowCount(), 1, "New tab was not closed");
+        Assert.assertEquals(linksPage.getCurrentPath(), LinksPage.PATH, "Did not return to the Links page");
+    }
 
+    @DataProvider
+    public Object[][] apiLinks() {
+        return new Object[][]{
+                {"created", 201, "Created"},
+                {"no-content", 204, "No Content"},
+                {"moved", 301, "Moved Permanently"},
+                {"bad-request", 400, "Bad Request"},
+                {"unauthorized", 401, "Unauthorized"},
+                {"forbidden", 403, "Forbidden"},
+                {"invalid-url", 404, "Not Found"},
+        };
+    }
 
-        linksPage.clickForbiddenResponseLink();
-        actualForbiddenResponse = linksPage.getResponse();
-        Assert.assertTrue(actualForbiddenResponse.contains("403")
-                        && actualForbiddenResponse.contains("Forbidden"),
-                "\n Actual Response Does Not Contain '403' and 'Forbidden' \n");
+    @Test(dataProvider = "apiLinks")
+    public void apiLinkShowsResponseStatus(String linkId, int expectedCode, String expectedText) {
+        LinksPage linksPage = new LinksPage(driver()).open();
+
+        linksPage.clickApiLink(linkId);
+
+        Assert.assertEquals(linksPage.getResponseStatusCode(), expectedCode, "Status code for '" + linkId + "'");
+        Assert.assertEquals(linksPage.getResponseStatusText(), expectedText, "Status text for '" + linkId + "'");
     }
 }

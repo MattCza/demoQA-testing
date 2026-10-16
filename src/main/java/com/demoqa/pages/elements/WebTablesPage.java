@@ -4,12 +4,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class WebTablesPage extends ElementsPage{
+    public static final String PATH = "/webtables";
 
     private By addButton = By.id("addNewRecordButton");
     private By registrationModal = By.id("registration-form-modal");
     private By registrationFirstName = By.id("firstName");
     private By registrationLastName = By.id("lastName");
-    private By registrationuserEmail = By.id("userEmail");
+    private By registrationUserEmail = By.id("userEmail");
     private By registrationAgeField = By.id("age");
     private By registrationSalary = By.id("salary");
     private By registrationDepartment = By.id("department");
@@ -19,6 +20,11 @@ public class WebTablesPage extends ElementsPage{
 
     public WebTablesPage(WebDriver driver) {
         super(driver);
+    }
+
+    public WebTablesPage open() {
+        openPath(PATH);
+        return this;
     }
     private String rowXpath(String email) {
         return "//tbody/tr[td[4][text()='" + email + "']]";
@@ -54,7 +60,7 @@ public class WebTablesPage extends ElementsPage{
     }
 
     public void setEmail(String email) {
-        set(registrationuserEmail, email);
+        set(registrationUserEmail, email);
     }
 
     public void setAge(String age) {
@@ -70,12 +76,12 @@ public class WebTablesPage extends ElementsPage{
     }
 
     public void addEmployee(String firstName, String lastName, String email, String age, String salary, String department){
-        set(registrationFirstName, firstName);
-        set(registrationLastName, lastName);
-        set(registrationuserEmail, email);
-        set(registrationAgeField, age);
-        set(registrationSalary, salary);
-        set(registrationDepartment, department);
+        setFirstName(firstName);
+        setLastName(lastName);
+        setEmail(email);
+        setAge(age);
+        setSalary(salary);
+        setDepartment(department);
         clickSubmitButton();
     }
 
@@ -83,7 +89,6 @@ public class WebTablesPage extends ElementsPage{
         click(registrationSubmitButton);
         waitUntilInvisible(registrationModal);
     }
-
 
     public String getTableFirstName(String email) {
         return find(cell(email, 1)).getText();
@@ -99,6 +104,10 @@ public class WebTablesPage extends ElementsPage{
 
     public String getTableSalary(String email) {
         return find(cell(email, 5)).getText();
+    }
+
+    public String getTableDepartment(String email) {
+        return find(cell(email, 6)).getText();
     }
 
 }

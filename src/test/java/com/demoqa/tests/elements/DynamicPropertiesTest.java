@@ -8,13 +8,21 @@ import org.testng.annotations.Test;
 public class DynamicPropertiesTest extends BaseTest {
 
     @Test
-    public void dynamicPropertiesTest() {
-        DynamicPropertiesPage dynamicPropertiesPage = homePage.goToElementsCard().clickDynamicPropertiesItem();
+    public void delayedButtonBecomesVisible() {
+        DynamicPropertiesPage dynamicPropertiesPage = new DynamicPropertiesPage(driver()).open();
 
-        String actualText = dynamicPropertiesPage.getVisibleAfterButtonText();
-        String expectedText = "Visible After 5 Seconds";
+        Assert.assertEquals(dynamicPropertiesPage.getVisibleAfterButtonText(), "Visible After 5 Seconds",
+                "Delayed button did not appear with the expected text");
+    }
 
-        Assert.assertEquals(actualText, expectedText,
-                "\n Actual & Expected Text Do Not Match \n");
+    @Test
+    public void delayedButtonBecomesEnabled() {
+        DynamicPropertiesPage dynamicPropertiesPage = new DynamicPropertiesPage(driver()).open();
+        Assert.assertFalse(dynamicPropertiesPage.isEnableAfterButtonEnabled(),
+                "Button should be disabled right after the page loads");
+
+        dynamicPropertiesPage.waitUntilEnableAfterButtonIsEnabled();
+
+        Assert.assertTrue(dynamicPropertiesPage.isEnableAfterButtonEnabled(), "Button did not become enabled");
     }
 }

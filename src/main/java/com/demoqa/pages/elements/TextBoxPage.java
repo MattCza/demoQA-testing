@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class TextBoxPage extends ElementsPage {
+    public static final String PATH = "/text-box";
+
     private By fullNameField = By.id("userName");
     private By emailField = By.xpath("//input[@placeholder='name@example.com']");
     private By currentAddressField = By.xpath("//textarea[@id='currentAddress']");
@@ -18,6 +20,11 @@ public class TextBoxPage extends ElementsPage {
 
     public TextBoxPage(WebDriver driver) {
         super(driver);
+    }
+
+    public TextBoxPage open() {
+        openPath(PATH);
+        return this;
     }
 
     public void setFullNameField(String fullName) {
@@ -42,20 +49,29 @@ public class TextBoxPage extends ElementsPage {
     }
 
     public String getNameResult() {
-        return getText(nameResult);
+        return outputValue(nameResult);
     }
 
     public String getEmailResult() {
-        return getText(emailResult);
+        return outputValue(emailResult);
     }
 
     public String getCurrentAddressResult() {
-        return getText(currentAddressResult);
+        return outputValue(currentAddressResult);
     }
 
     public String getPermanentAddressResult() {
-        return getText(permanentAddressResult);
+        return outputValue(permanentAddressResult);
     }
 
+    // Output lines look like "Name:John" or "Current Address :Street 1" - return the part after the label
+    private String outputValue(By outputLine) {
+        String text = waitUntilVisible(outputLine).getText();
+        int separator = text.indexOf(':');
+        if (separator < 0) {
+            throw new IllegalStateException("Unexpected output format: '" + text + "'");
+        }
+        return text.substring(separator + 1).trim();
+    }
 
 }

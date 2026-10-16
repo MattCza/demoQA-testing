@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class ElementsPage extends HomePage {
+    public static final String PATH = "/elements";
 
     // Menu item ids (item-0, item-1, ...) repeat in every menu group, so items are located by their route.
     private By textBoxItem = By.cssSelector("a[href='/text-box']");
@@ -16,6 +17,11 @@ public class ElementsPage extends HomePage {
 
     public ElementsPage(WebDriver driver) {
         super(driver);
+    }
+
+    public ElementsPage open() {
+        openPath(PATH);
+        return this;
     }
 
     public TextBoxPage clickTextBoxItem() {

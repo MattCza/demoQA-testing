@@ -7,6 +7,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
 public class PracticeFormPage extends FormsPage {
+    public static final String PATH = "/automation-practice-form";
+
     private By firstNameField = By.id("firstName");
     private By lastNameField = By.id("lastName");
     private By emailField = By.id("userEmail");
@@ -31,6 +33,11 @@ public class PracticeFormPage extends FormsPage {
 
     public PracticeFormPage(WebDriver driver) {
         super(driver);
+    }
+
+    public PracticeFormPage open() {
+        openPath(PATH);
+        return this;
     }
 
     public void setFirstName(String firstName) {

@@ -9,8 +9,8 @@ import org.testng.asserts.SoftAssert;
 public class PracticeFormTest extends BaseTest {
 
     @Test
-    public void practiceFormTest() {
-        PracticeFormPage practiceFormPage = homePage.goToFormsCard().clickPracticeBoxItem();
+    public void submittedFormShowsEnteredData() {
+        PracticeFormPage practiceFormPage = new PracticeFormPage(driver()).open();
         practiceFormPage.setFirstName("Matt");
         practiceFormPage.setLastName("Griffith");
         practiceFormPage.setMobileNumber("1234567890");
@@ -28,7 +28,7 @@ public class PracticeFormTest extends BaseTest {
         practiceFormPage.clickSubmitButton();
 
         Assert.assertEquals(practiceFormPage.getSubmissionModalTitle(), "Thanks for submitting the form",
-                "\n Submission confirmation modal is not displayed \n");
+                "Submission confirmation modal is not displayed");
 
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(practiceFormPage.getSubmittedValue("Student Name"), "Matt Griffith");
