@@ -16,8 +16,6 @@ public class WebTablesPage extends ElementsPage{
     private By registrationDepartment = By.id("department");
     private By registrationSubmitButton = By.id("submit");
 
-    // Table columns: 1 First Name, 2 Last Name, 3 Age, 4 Email, 5 Salary, 6 Department, 7 Action
-
     public WebTablesPage(WebDriver driver) {
         super(driver);
     }
@@ -52,27 +50,27 @@ public class WebTablesPage extends ElementsPage{
     }
 
     public void setFirstName(String firstName) {
-        set(registrationFirstName, firstName);
+        setText(registrationFirstName, firstName);
     }
 
     public void setLastName(String lastName){
-        set(registrationLastName, lastName);
+        setText(registrationLastName, lastName);
     }
 
     public void setEmail(String email) {
-        set(registrationUserEmail, email);
+        setText(registrationUserEmail, email);
     }
 
     public void setAge(String age) {
-        set(registrationAgeField, age);
+        setText(registrationAgeField, age);
     }
 
     public void setSalary(String salary) {
-        set(registrationSalary, salary);
+        setText(registrationSalary, salary);
     }
 
     public void setDepartment(String department) {
-        set(registrationDepartment, department);
+        setText(registrationDepartment, department);
     }
 
     public void addEmployee(String firstName, String lastName, String email, String age, String salary, String department){

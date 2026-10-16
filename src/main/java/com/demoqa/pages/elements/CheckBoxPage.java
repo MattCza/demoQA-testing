@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CheckBoxPage extends ElementsPage {
+
     public static final String PATH = "/checkbox";
 
     private By selectedItems = By.cssSelector("#result .text-success");
@@ -63,7 +64,6 @@ public class CheckBoxPage extends ElementsPage {
         return "true".equals(checkboxState(title));
     }
 
-    // A parent with only some children selected is shown as partially checked
     public boolean isItemPartiallyChecked(String title) {
         return "mixed".equals(checkboxState(title));
     }

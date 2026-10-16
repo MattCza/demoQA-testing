@@ -22,10 +22,6 @@ import org.testng.annotations.Test;
 
 import java.util.function.Function;
 
-/**
- * Covers the UI navigation (home cards and side menu) in one place.
- * Functional tests open their pages by URL, so a broken menu locator fails only these tests.
- */
 public class NavigationTest extends BaseTest {
 
     @DataProvider
@@ -76,7 +72,6 @@ public class NavigationTest extends BaseTest {
                 "Forms menu item 'Practice Form' opened the wrong page");
     }
 
-    // Typed wrappers keep the data provider rows readable while giving the lambdas a concrete type
     private static Function<HomePage, BasePage> nav(Function<HomePage, BasePage> navigation) {
         return navigation;
     }

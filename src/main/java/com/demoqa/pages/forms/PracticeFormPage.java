@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
 public class PracticeFormPage extends FormsPage {
+
     public static final String PATH = "/automation-practice-form";
 
     private By firstNameField = By.id("firstName");
@@ -41,15 +42,15 @@ public class PracticeFormPage extends FormsPage {
     }
 
     public void setFirstName(String firstName) {
-        type(firstNameField, firstName);
+        appendText(firstNameField, firstName);
     }
 
     public void setLastName(String lastName) {
-        type(lastNameField, lastName);
+        appendText(lastNameField, lastName);
     }
 
     public void setEmail(String email) {
-        type(emailField, email);
+        appendText(emailField, email);
     }
 
     public void selectGenderMale() {
@@ -59,7 +60,7 @@ public class PracticeFormPage extends FormsPage {
     }
 
     public void setMobileNumber(String mobileNumber) {
-        type(mobileNumberField, mobileNumber);
+        appendText(mobileNumberField, mobileNumber);
     }
 
     public void setDateOfBirth(String year, String month, String day) {
@@ -68,7 +69,6 @@ public class PracticeFormPage extends FormsPage {
         selectByVisibleText(monthSelectDropDown, month);
         selectByVisibleText(yearSelectDropDown, year);
 
-        // The calendar also shows days of adjacent months; pick the one from the selected month
         click(By.xpath("//div[contains(@class,'react-datepicker__day ') and not(contains(@class,'--outside-month'))]"
                 + "[text()='" + Integer.parseInt(day) + "']"));
     }
@@ -93,12 +93,11 @@ public class PracticeFormPage extends FormsPage {
     }
 
     public void uploadPicture(String absoluteFilePath) {
-        // File inputs accept a path even when visually hidden, so only presence is required
         find(uploadPictureInput).sendKeys(absoluteFilePath);
     }
 
     public void setCurrentAddress(String address) {
-        type(currentAddressField, address);
+        appendText(currentAddressField, address);
     }
 
     public void selectState(String state) {
@@ -131,7 +130,6 @@ public class PracticeFormPage extends FormsPage {
         waitUntilInvisible(submissionModalTitle);
     }
 
-    // Known demoqa defect (2026-10): the Close button does not close the modal, so this wait times out.
     public void clickCloseLargeModalButton() {
         click(closeLargeModalButton);
         waitUntilInvisible(submissionModalTitle);

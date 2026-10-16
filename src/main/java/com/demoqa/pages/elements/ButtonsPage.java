@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class ButtonsPage extends ElementsPage{
+
     public static final String PATH = "/buttons";
 
     private By doubleClickMeButton = By.id("doubleClickBtn");

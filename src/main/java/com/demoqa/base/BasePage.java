@@ -3,6 +3,7 @@ package com.demoqa.base;
 import com.demoqa.config.Config;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Rectangle;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,6 +13,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.net.URI;
+import java.time.Duration;
 
 public class BasePage {
     protected final WebDriver driver;
@@ -30,10 +32,6 @@ public class BasePage {
         return URI.create(driver.getCurrentUrl()).getPath();
     }
 
-    /**
-     * Waits until the browser shows the given path and returns the path actually shown,
-     * so a navigation assertion reports the real location instead of a timeout.
-     */
     public String waitForPath(String expectedPath) {
         try {
             wait.until(d -> expectedPath.equals(getCurrentPath()));
@@ -43,7 +41,6 @@ public class BasePage {
         return getCurrentPath();
     }
 
-    // Waits for presence only: some inputs (e.g. styled checkboxes) are hidden and handled via JavaScript.
     protected WebElement find(By locator) {
         return wait.until(ExpectedConditions.presenceOfElementLocated(locator));
     }
@@ -52,13 +49,13 @@ public class BasePage {
         return find(locator).getText();
     }
 
-    protected void set(By locator, String text) {
+    protected void setText(By locator, String text) {
         WebElement element = waitUntilVisible(locator);
         element.clear();
         element.sendKeys(text);
     }
 
-    protected void type(By locator, String text) {
+    protected void appendText(By locator, String text) {
         waitUntilVisible(locator).sendKeys(text);
     }
 
@@ -66,18 +63,31 @@ public class BasePage {
         wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
     }
 
-    // Actions do not scroll the target into view in Firefox, so pointer actions scroll first.
     private WebElement findInViewport(By locator) {
-        WebElement webElement = find(locator);
+        WebElement webElement = waitUntilVisible(locator);
         scrollIntoView(webElement);
+        waitUntilPositionIsStable(webElement);
         return webElement;
     }
 
-    // 'instant' overrides the page's CSS smooth scrolling, which would move the element mid-action;
-    // 'center' keeps it clear of the sticky header and footer.
+
+    // 'instant' overrides smooth scrolling, which could move the element mid-action
+    // 'center' keeps it clear of the sticky header and footer
     private void scrollIntoView(WebElement webElement) {
         javaScript().executeScript("arguments[0].scrollIntoView({block: 'center', behavior: 'instant'});", webElement);
     }
+
+    // Layout can shift after rendering
+    private void waitUntilPositionIsStable(WebElement webElement) {
+        Rectangle[] previous = {webElement.getRect()};
+        new WebDriverWait(driver, Config.timeout(), Duration.ofMillis(150)).until(d -> {
+            Rectangle current = webElement.getRect();
+            boolean stable = current.equals(previous[0]);
+            previous[0] = current;
+            return stable;
+        });
+    }
+
 
     protected void doubleClick(By locator) {
         new Actions(driver).doubleClick(findInViewport(locator)).perform();

@@ -16,7 +16,6 @@ public class WebTablesTest extends BaseTest {
 
     @Test
     public void addedRecordAppearsInTable() {
-        // Unique e-mail so the row can never be confused with seed data or another test's record
         String email = "matt.smith." + UUID.randomUUID().toString().substring(0, 8) + "@example.com";
 
         WebTablesPage webTablesPage = new WebTablesPage(driver()).open();

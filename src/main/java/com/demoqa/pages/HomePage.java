@@ -11,6 +11,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class HomePage extends BasePage {
+
     public static final String PATH = "/";
 
     private By elementsCard = By.xpath("//div[@class='card-body']/h5[text()='Elements']");

@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class DynamicPropertiesPage extends ElementsPage {
+
     public static final String PATH = "/dynamic-properties";
 
     private By visibleAfterButton = By.id("visibleAfter");

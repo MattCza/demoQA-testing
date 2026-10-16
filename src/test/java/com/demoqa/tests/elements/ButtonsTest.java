@@ -35,7 +35,6 @@ public class ButtonsTest extends BaseTest {
     public void singleClickIsNotTreatedAsDoubleOrRightClick() {
         ButtonsPage buttonsPage = new ButtonsPage(driver()).open();
         buttonsPage.clickButton();
-        // Waiting for the dynamic click message guarantees the click has been handled before checking absence
         buttonsPage.getDynamicClickMessage();
 
         Assert.assertFalse(buttonsPage.isDoubleClickMessageDisplayed(), "Single click was treated as a double click");

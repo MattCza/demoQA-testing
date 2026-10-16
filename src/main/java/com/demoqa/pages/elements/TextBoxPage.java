@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class TextBoxPage extends ElementsPage {
+
     public static final String PATH = "/text-box";
 
     private By fullNameField = By.id("userName");
@@ -28,19 +29,19 @@ public class TextBoxPage extends ElementsPage {
     }
 
     public void setFullNameField(String fullName) {
-        type(fullNameField, fullName);
+        appendText(fullNameField, fullName);
     }
 
     public void setEmailField(String email) {
-        type(emailField, email);
+        appendText(emailField, email);
     }
 
     public void setCurrentAddressField(String currentAddress) {
-        type(currentAddressField, currentAddress);
+        appendText(currentAddressField, currentAddress);
     }
 
     public void setPermanentAddressField(String permanentAddress) {
-        type(permanentAddressField, permanentAddress);
+        appendText(permanentAddressField, permanentAddress);
     }
 
     public void clickSubmitButton() {
@@ -64,7 +65,6 @@ public class TextBoxPage extends ElementsPage {
         return outputValue(permanentAddressResult);
     }
 
-    // Output lines look like "Name:John" or "Current Address :Street 1" - return the part after the label
     private String outputValue(By outputLine) {
         String text = waitUntilVisible(outputLine).getText();
         int separator = text.indexOf(':');

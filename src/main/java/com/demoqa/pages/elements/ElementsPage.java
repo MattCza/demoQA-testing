@@ -5,9 +5,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class ElementsPage extends HomePage {
+
     public static final String PATH = "/elements";
 
-    // Menu item ids (item-0, item-1, ...) repeat in every menu group, so items are located by their route.
     private By textBoxItem = By.cssSelector("a[href='/text-box']");
     private By checkBoxItem = By.cssSelector("a[href='/checkbox']");
     private By webTablesItem = By.cssSelector("a[href='/webtables']");

@@ -13,8 +13,6 @@ import org.slf4j.LoggerFactory;
 public final class DriverFactory {
 
     private static final Logger LOG = LoggerFactory.getLogger(DriverFactory.class);
-
-    // Headless browsers have no screen to maximise to, so they get a fixed desktop-sized window.
     private static final Dimension HEADLESS_WINDOW_SIZE = new Dimension(1920, 1080);
 
     private DriverFactory() {
@@ -27,7 +25,7 @@ public final class DriverFactory {
             case "firefox" -> createFirefox(headless);
             case "chrome" -> createChrome(headless);
             default -> throw new IllegalArgumentException(
-                    "Unsupported browser '" + Config.browser() + "'; supported: firefox, chrome");
+                    "Unsupported browser '" + Config.browser() + "'. supported: firefox, chrome");
         };
 
         if (headless) {

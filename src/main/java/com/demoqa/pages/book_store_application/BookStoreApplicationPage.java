@@ -4,6 +4,7 @@ import com.demoqa.pages.HomePage;
 import org.openqa.selenium.WebDriver;
 
 public class BookStoreApplicationPage extends HomePage {
+
     public static final String PATH = "/books";
 
     public BookStoreApplicationPage(WebDriver driver) {

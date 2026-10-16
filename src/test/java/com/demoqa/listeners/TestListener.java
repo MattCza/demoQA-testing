@@ -18,10 +18,7 @@ import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-/**
- * Logs the test lifecycle and, on failure, saves a screenshot, the page source and the URL
- * to target/failure-artifacts and links them in the TestNG report.
- */
+// Logs test and on failure saves a ss, page and the URL to target/failure-artifacts and links them in the TestNG report.
 public class TestListener implements ITestListener {
 
     private static final Logger LOG = LoggerFactory.getLogger(TestListener.class);
@@ -46,7 +43,7 @@ public class TestListener implements ITestListener {
     @Override
     public void onTestFailure(ITestResult result) {
         LOG.error("FAIL  {} ({} ms): {}", testName(result), duration(result), result.getThrowable().toString());
-        // The listener runs on the test's thread, so DriverManager returns the failing test's browser
+
         if (DriverManager.hasDriver()) {
             saveDiagnostics(DriverManager.getDriver(), result);
         }
@@ -71,7 +68,6 @@ public class TestListener implements ITestListener {
             Reporter.log("<a href='" + screenshot.toUri() + "'>Screenshot</a> | "
                     + "<a href='" + pageSource.toUri() + "'>Page source</a>");
         } catch (IOException | RuntimeException e) {
-            // Diagnostics must never hide the original test failure
             LOG.warn("Could not save failure diagnostics for {}", testName(result), e);
         }
     }

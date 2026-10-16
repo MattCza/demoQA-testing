@@ -12,8 +12,8 @@ import java.net.URL;
 import java.nio.file.Paths;
 
 /**
- * One browser per test class. Each test opens the page it needs by URL (page.open()),
- * so tests do not depend on each other or on the home page navigation.
+ * One browser per test class
+ * Tests don't depend on each other or on the home page navigation.
  */
 @Listeners(TestListener.class)
 public class BaseTest {

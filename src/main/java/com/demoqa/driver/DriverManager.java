@@ -2,9 +2,7 @@ package com.demoqa.driver;
 
 import org.openqa.selenium.WebDriver;
 
-/**
- * Holds one WebDriver per thread, so test classes running in parallel never share a browser.
- */
+// Holds one WebDriver per thread - no browser share in parallel
 public final class DriverManager {
 
     private static final ThreadLocal<WebDriver> DRIVER = new ThreadLocal<>();
